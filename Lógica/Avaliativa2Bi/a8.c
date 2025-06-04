@@ -1,0 +1,18 @@
+#include <stdio.h>
+//Lucas Vincius de Souza
+//RA: 22504534
+int main() {
+    double N[100], X;
+    scanf("%lf", &X);
+    N[0] = X;
+
+    for (int i = 1; i < 100; i++) {
+        N[i] = N[i - 1] / 2.0;
+    }
+
+    for (int i = 0; i < 100; i++) {
+        printf("N[%d] = %.4lf\n", i, N[i]);
+    }
+
+    return 0;
+}
