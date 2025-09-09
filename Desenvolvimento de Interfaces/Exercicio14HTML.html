@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 14 HTML</title>
+</head>
+<body>
+    <h1>Exemplo 14 HTML - Formulários</h1>
+    <h2>Formulário de Cadastro</h2>
+
+    <form action="paginaDestino.java" method="get">
+        <div>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                <br>
+
+                <label for="">CPF</label>
+                <br>
+                <input type="text" name="cpf" id="cpf" required>
+                <br>
+    
+                <label for="">RG</label>
+                <br>
+                <input type="text" name="rg" id="rg" required>
+                <br>
+    
+                <label for="">Digite o seu Nome</label>
+                <br>
+                <input type="text" name="name" id="name">
+                <br>
+    
+                <label for="">Ano de Nascimento</label>
+                <br>
+                <input type="number" name="anoNascimento" id="anoNascimento" min="1910" max="2100" step="1">
+                <br>
+    
+                <label for="">Sexo</label>
+                <br>
+                <input type="radio" name="radioSexo" id="radioSexo" value="1"> Feminino
+                <input type="radio" name="radioSexo" id="radioSexo" value="2"> Masculino
+    
+                <br>
+    
+                <label for="">Estado Civil</label>
+                <br>
+                <select name="cboEstadoCivil" id="cboEstadoCivil">
+                    <option value="1">Casado</option>
+                    <option value="2">Solteiro</option>
+                    <option value="3">Viúvo</option>
+                    <option value="4">Divorciado</option>
+                    <option value="5">Tico-tico no fubá</option>
+                    <option value="6">Outros</option>
+                </select>
+            </fieldset>
+        </div>
+        <br>
+
+        <div>
+            <fieldset>
+                <legend>Preferências</legend>
+                <fieldset>
+                    <legend>Escolha um ou mais locais de lazer</legend>
+                    <input type="checkbox" name="ckTipoLazer" id="ckTipoLazer" value="1"> Cidade
+                    <br>
+                    <input type="checkbox" name="ckTipoLazer" id="ckTipoLazer" value="2"> Cachoeira
+                    <br>
+                    <input type="checkbox" name="ckTipoLazer" id="ckTipoLazer" value="3"> Praia
+                    <br>
+                    <input type="checkbox" name="ckTipoLazer" id="ckTipoLazer" value="4"> Montanha
+                    <br>
+                    <input type="checkbox" name="ckTipoLazer" id="ckTipoLazer" value="5"> Fazenda
+                </fieldset>
+
+                <fieldset>
+                    <legend>Escolha uma Região Favorita</legend>
+                    <input type="radio" name="radioRegiao" id="radioRegiao" value="1"> Nordeste
+                    <br>
+                    <input type="radio" name="radioRegiao" id="radioRegiao" value="2"> Sul
+                    <br>
+                    <input type="radio" name="radioRegiao" id="radioRegiao" value="3"> Sudeste
+                    <br>
+                    <input type="radio" name="radioRegiao" id="radioRegiao" value="4"> Centro Oeste
+                    <br>
+                    <input type="radio" name="radioRegiao" id="radioRegiao" value="5"> Norte
+                </fieldset>
+            </fieldset>
+        </div>
+        <br>
+        <div>
+            <label for="">Dados Cadastrados</label>
+            <table width="80%">
+                <tr>
+                    <th>CPF</th>
+                    <th>Nome</th>
+                    <th>Ano de Nascimento</th>
+                </tr>
+                <tr>
+                    <td>555.999.777-85</td>
+                    <td>José Das Couves</td>
+                    <td>1995</td>
+                </tr>
+                <tr>
+                    <td>555.999.777-85</td>
+                    <td>Luiz Das Couves</td>
+                    <td>1995</td>
+                </tr>
+                <tr>
+                    <td>555.999.777-85</td>
+                    <td>Maria Das Couves</td>
+                    <td>1995</td>
+                </tr>
+                <tr>
+                    <td>555.999.777-85</td>
+                    <td>Pedro Das Couves</td>
+                    <td>1995</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
+</body>
+</html>

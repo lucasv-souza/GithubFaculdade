@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 11 HTML - Formulários</title>
+</head>
+<body>
+    <h1>Exemplo 11 - Formulários</h1>
+    <p>Os formulários em HTML são um dos principais recursos para coleta de dados, eles devem ser simples e atualmente funcionais, atendendo sempre as necessidades dos usuários.</p>
+    <p>Para trabalhar com formulários em HTML, possuimos uma serie de componentes que vão facilitar o processo de intereção com o usuário. Todos os formulários começam necessariamente com a tag &lt;form&gt;, essa tag indica para o navegador que a página HTML possui um formulário que pode enviar dados.</p>
+    <p>Além da tag &lt;form&gt; temos também que usar os atributos action (que define o local -url- em que os dados recolhidos/coletados devem ser enviados) e o method que define qual o método http para enviar os dados GET ou POST.</p>
+    
+    <h2>Exemplo Prático - Tela de Login</h2>
+    <form action="paginaDestino.php" method="get">
+        <label for="">Usuário</label>
+        <br>
+        <input type="text" name="usuarioName" id="usuarioId">
+        <br>
+
+        <label for="">Senha</label>
+        <br>
+        <input type="password" name="passwordName" id="passwordId">
+        
+        <br>
+        <br>
+
+        <button type="submit">Logar</button>
+    </form>
+</body>
+</html>
