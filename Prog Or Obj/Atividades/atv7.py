@@ -48,6 +48,6 @@ if __name__ == '__main__':
     print("Ano:", carro2.get_ano())
     print(f"Valor: R$", carro2.get_valor())
 
-    novo_valor = float(input("Novo valor: "))
-    carro2.set_valor(novo_valor)
-    print("Valor atualizado", carro2.get_valor())
+    vl_aumento = float(input("Valor do aumento: "))
+    carro2.set_valor(vl_aumento)
+    print("Valor atualizado co input", carro2.get_valor())
