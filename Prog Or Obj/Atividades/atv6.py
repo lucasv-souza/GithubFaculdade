@@ -17,10 +17,10 @@ class Aluno:
         self.nome = novoNome
 
     def set_mensalidade(self, novaMensalidade):
-        self.nome = novaMensalidade
+        self.mensalidade = novaMensalidade
 
     def set_idade(self, novaIdade):
-        self.nome = novaIdade
+        self.idade = novaIdade
 
 if __name__ == '__main__':
 
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     print("Idade:", aluno1.get_idade())
 
     aluno1.set_nome("Lucas Vinicius")
-    print('Nome Atualizado:', aluno1.get_nome())
+    print("Nome Atualizado:", aluno1.get_nome())
 
     aluno2 = Aluno('Breno', 1300, 24)
     print("Endereço hexadecimal do Aluno 2:", aluno2)
@@ -40,4 +40,4 @@ if __name__ == '__main__':
     print("Idade:", aluno2.get_idade())
 
     aluno2.set_nome("Breno Henrique")
-    print('Nome Atualizado:', aluno2.get_nome())
+    print("Nome Atualizado:", aluno2.get_nome())
