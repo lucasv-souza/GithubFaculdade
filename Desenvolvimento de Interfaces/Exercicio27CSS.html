@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 27 CSS</title>
+    <style>
+        .div1{
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; 
+            margin: 25px;
+            padding: 20px;
+            border-left: solid darkred 8px;
+            font-size: 1.4em;
+        }
+        .container{
+            display: flex;
+            width: 90%;
+            margin: 20px auto;
+            border: solid red 4px;
+            padding: 12px;
+            align-items: center;
+            background-color: #e6efde;
+        }
+        .item{
+            background-color: lightskyblue;
+            padding: 20px;
+            margin: 5px;
+            border: solid black 3px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .row{
+            flex-direction: row;
+        }
+        .row-reverse{
+            flex-direction: row-reverse;
+        }
+        .column{
+            flex-direction: column;
+        }
+        .column-reverse{
+            flex-direction: column-reverse;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <h1>Exemplo 27 CSS - FlexBox</h1>
+        <p>O Flexbox é um modelo de layout em css que foi proejtado para facilitar a criação de layouts complexos. Ele é especialmente útil para criação de layouts responsivos.</p>
+    </div>
+    <div class="div1">
+        <h2>Principais propriedades do Flexbox</h2>
+        <h3>Flex-Direction</h3>
+        <p>A propriedade flex-direction permite alterar a direção na qual os elementos html serão exibidos. A seguir demonstramos o seu uso.</p>
+    </div>
+    <div class="div1">
+        <h2>Exemplo Prático - FlexDirection</h2>
+        <h3>Flex Direction - row</h3>
+        <div class="container row">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+        <h3>Flex Direction - row-reverse</h3>
+        <div class="container row-reverse">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+        <h3>Flex Direction - column</h3>
+        <div class="container column">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+        <h3>Flex Direction - column-reverse</h3>
+        <div class="container column-reverse">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+    </div>
+</body>
+
+</html>
