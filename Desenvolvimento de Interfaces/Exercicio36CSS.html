@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 36 Grid Layout</title>
+    <style>
+        .page{
+            display: grid;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            grid-gap: 10px;
+            grid-template-areas: 
+                'header header header header header header'
+                'menu main main main right right'
+                'menu footer footer footer footer footer'
+            ;
+            background-color: lightskyblue;
+            text-align: center;
+            grid-template-rows: 10vh 70vh 5vh;
+        }
+        .item{
+            padding: 10px;
+            text-align: center;
+        }
+        .header{
+            grid-area: header;
+            background-color: blue;
+        }
+        .menu{
+            grid-area: menu;
+            background-color: darkorange;
+        }
+        .main{
+            grid-area: main;
+            background-color: lightgreen;
+        }
+        .right{
+            grid-area: right;
+            background-color: deeppink;
+        }
+        .footer{
+            grid-area: footer;
+            background-color: lightslategrey;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="item header">Header</div>
+        <div class="item menu">Menu</div>
+        <div class="item main">Main</div>
+        <div class="item right">Right</div>
+        <div class="item footer">Footer</div>
+    </div>
+</body>
+</html>

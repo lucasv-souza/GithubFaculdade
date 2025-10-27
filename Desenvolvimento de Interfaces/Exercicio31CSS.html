@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 31 Grid Layout</title>
+    <style>
+        body{
+            margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 80% 1fr;
+            grid-template-rows: 10% 1fr 10%;
+            grid-gap: 20px;
+            height: 90vh;
+        }
+        header{
+            background-color: deeppink;
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        main{
+            background-color: darkorange;
+        }
+        aside{
+            background-color: aqua;
+        }
+        footer{
+            background-color: lightgreen;
+            grid-column: 1/3;
+        }
+        section{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            1 - Header
+        </header>
+        <main>
+            2 - Main
+            <section>
+                <h2>Section</h2>
+                <h2>O que é o Grid Layout</h2>
+                <article>
+                    <h3>Article</h3>
+                    <p>O Grid Layout é bidimensional, permitindo que o desenvolvedor possa separar o layout da página em linha e colunas, diferentemente do flexbox que é unidimensional, ou seja ordena os elementos em linha.</p>
+                </article>
+                <article>
+                    <h3>Article</h3>
+                    <h2>Flexbox ou Grid Layout</h2>
+                    <p>O Flexbox e o Grid Layout podem ser usados em conjunto. Você pode aplicar o Flexbox a elementos dentro de um layout que esteja usando o Grid Layout, aproveitando o melhor dos dois mundos.</p>
+                    <p>A escolha entre Flexbox e Grid Layout não se trata de um substituir o outro, mas sim de entender as necessidades especificas do seu layout e escolher a técnica que melhor atende a essas necessidades.</p>
+                </article>
+            </section>
+
+        </main>
+        <aside>
+            3 - Aside
+        </aside>
+        <footer>
+            4 - Footer
+        </footer>
+    </div>
+</body>
+</html>
