@@ -1,0 +1,23 @@
+from atv13_1 import Conta, PessoaFisica, PessoaJuridica
+
+if __name__ == "__main__":
+    pf1 = PessoaFisica("Ana", 4000, "f")
+    print("\nDados da Pessoa Física:", pf1)
+    print(f"Nome: {pf1.get_nome()}, Saldo: R$ {pf1.get_saldo()}, Gênero: {pf1.get_genero()}")
+    pf2 = PessoaFisica("Lucas", 6000)
+    print("\nDados da Pessoa Física:", pf2)
+    print(f"Nome: {pf2.get_nome()}, Saldo: R$ {pf2.get_saldo()}, Gênero: {pf2.get_genero()}")
+    pf2.set_nome("Lucas Vinicius")
+    print("\nNome Alterado:", pf2.get_nome())
+    pj1 = PessoaJuridica("HotDog do Carlão", 15000, "comum")
+    print(pj1)
+    print(f"\nNome: {pj1.get_nome()}, Saldo: R$ {pj1.get_saldo()}, Modalidade: {pj1.get_modalidade()}")
+    pj2 = PessoaJuridica("Lanchonete do Zé", 25000)
+    print(pj2)
+    print(f"\n - Pessoa Física 1:\n Saldo antes: R$ {pf1.get_saldo()}")
+    pf1.get_deposito(5000)
+    print(f"Saldo depois do depósito: R$ {pf1.get_saldo()}")
+    pj1.get_deposito(1000)
+    print(f"- Pessoa Jurídica 1:\nSaldo antes: R$ {pj1.get_saldo()}")
+    pf1.get_retirada(2000)
+    print(f"Saldo Pessoa Física 1 depois da retirada: R$ {pf1.get_saldo()}")
