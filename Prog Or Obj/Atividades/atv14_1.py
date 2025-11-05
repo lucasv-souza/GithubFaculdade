@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import math
 
 class FormaGeometrica(ABC):
     def __init__(self, cor):
@@ -35,3 +36,22 @@ class Quadrado(FormaGeometrica):
 
     def perimetro(self):
         return 4 * self.lado
+
+class Circulo(FormaGeometrica):
+    def __init__(self, cor, raio=1):
+        super().__init__(cor)
+        self.raio = raio
+
+    def get_raio(self):
+        return self.raio
+
+    def set_raio(self, novo_raio):
+        self.raio = novo_raio
+
+    def area(self):
+        vl_area = math.pi * (self.raio ** 2)
+        return round(vl_area, 2)
+
+    def perimetro(self):
+        vl_perimetro = 2 * math.pi * self.raio
+        return round(vl_perimetro, 2)
