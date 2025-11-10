@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Exemplo 43 Bootstrap</title>
+    <style>
+        .painel{
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary text-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Cliente</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    </div>
+    <div class="container-sm">
+        <div class="card painel">
+            <div class="card-header bg-primary text-white">
+                Cadastro Cliente
+            </div>
+            <div class="card-body">
+                <div>
+                    <label for="">Nome</label>
+                    <input type="text" name="" id="" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Endereço de E-mail</label>
+                        <input type="email" name="" id="" class="form-control is-invalid" placeholder="seuemail@exemplo.com">
+                        <div class="invalid-feedback">
+                            Por favor, insira um e-mail válido
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="">CPF</label>
+                        <input type="text" name="" id="" class="form-control is-valid" placeholder="000.000.000-00">
+                        <div class="valid-feedback">
+                            Campo preenchido
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <label for="">Rua/Avenida <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="">Número <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Cidade <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="">Estado <span class="text-danger">*</span></label>
+                        <select name="" id="" class="form-control" aria-label="Default select example">
+                            <option selected>Selecione...</option>
+                            <option value="1">Distrito Federal</option>
+                            <option value="2">São Paulo</option>
+                            <option value="3">Minas Gerais</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label for="">CEP <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="XXXXX-XXX">
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                   <div class="text-end">
+                    <button type="button" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-primary">Sair</button>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
