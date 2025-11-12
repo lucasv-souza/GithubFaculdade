@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod 
+
 class FormaGeometrica(ABC):         
     ct_figura = 0                  
     @classmethod                    
