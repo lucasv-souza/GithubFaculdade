@@ -1,0 +1,15 @@
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\bin\Debug\net8.0\TwoWords.exe
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\bin\Debug\net8.0\TwoWords.deps.json
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\bin\Debug\net8.0\TwoWords.runtimeconfig.json
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\bin\Debug\net8.0\TwoWords.dll
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\bin\Debug\net8.0\TwoWords.pdb
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.AssemblyInfoInputs.cache
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.AssemblyInfo.cs
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.csproj.CoreCompileInputs.cache
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.sourcelink.json
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.dll
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\refint\TwoWords.dll
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.pdb
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\TwoWords.genruntimeconfig.cache
+c:\Users\lucas\OneDrive\Documents\GitHub\GithubFaculdade\Desenv Sist\obj\Debug\net8.0\ref\TwoWords.dll
