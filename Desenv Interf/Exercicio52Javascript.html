@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Exemplo 8 - JavaScript</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <h1>Exemplo 52 - Método Reduce</h1>
+            <p>Seja o vetor de objetos
+            <pre>produtos =[
+                {nome: "Camiseta", preco: 120, cor: "verde" },
+                { nome: "Calça", preco: 200, cor: "amarelo" },
+                { nome: "Sapato", preco: 350, cor: "verde" },
+                { nome: "Sapato", preco: 150, cor: "branco" },
+                { nome: "Sapato", preco: 250, cor: "Preto" },
+                { nome: "Sapato", preco: 100, cor: "Azul" },
+                { nome: "Bermuda", preco: 60, cor: "verde" },
+                { nome: "Chinelo", preco: 60, cor: "verde" },
+                ];
+            </pre>
+            </p>
+            <div class="d-grid gap-2 mb-4">
+                <button type="button" id="cmdResultado" class="btn btn-primary" onclick="aplicarDesconto()">Clique para
+                    obter um desconto de 10% em todos os produtos</button>
+            </div>
+            <div class="d-grid gap-2 mb-4">
+                <button type="button" id="cmdResultado2" class="btn btn-primary"
+                    onclick="verificarDescontoTotal()">Clique aqui para saber o valor total do desconto</button>
+            </div>
+
+        </div>
+        <div class="alert alert-success" role="alert">
+
+            <h4>Resultado Com Desconto</h3>
+                <p id="resultadoComDesconto"></p>
+
+        </div>
+        <div class="alert alert-success" role="alert">
+
+
+            <h4>Valor Total do Desconto</h3>
+                <p id="resultadoValorTotalDesconto"></p>
+        </div>
+    </div>
+
+    <script>
+        produtos = [
+            { nome: "Camiseta", preco: 120, cor: "verde" },
+            { nome: "Calça", preco: 200, cor: "amarelo" },
+            { nome: "Sapato", preco: 350, cor: "verde" },
+            { nome: "Sapato", preco: 150, cor: "branco" },
+            { nome: "Sapato", preco: 250, cor: "Preto" },
+            { nome: "Sapato", preco: 100, cor: "Azul" },
+            { nome: "Bermuda", preco: 60, cor: "verde" },
+            { nome: "Chinelo", preco: 60, cor: "verde" },
+        ];
+        function aplicarDesconto(){
+            const produtosComDesconto = produtos.map((produto)=>({
+                nome: produto.nome, 
+                proco: produto.preco,
+                deconto:produto.preco - produto.preco * 0.9, 
+                precoFinal: produto.preco * 0.9
+            }));
+            const resultado2 = document.getElementById("resultadoComDesconto");
+            resultado2.textContent = JSON.stringify(produtosComDesconto, null, 2);
+        }
+        function verificarDescontoTotal(){
+            let valorTotalDesconto = 0
+            const produtosComDesconto = produtos.reduce((valorTotal, valorAtual)=>{
+                const desconto = valorAtual.preco - valorAtual.preco * 0.9;
+                valorTotal.push({
+                    nome: valorAtual.nome,
+                    desconto: desconto,
+
+                });
+                valorTotalDesconto += desconto;
+                return valorTotal;
+            },[]);
+            const resultado2 = document.getElementById("resultadoComDesconto");
+            resultado2.textContent = JSON.stringify(produtosComDesconto, null, 2);
+
+            const resultado3 = document.getElementById("resultadoValorTotalDesconto");
+            resultado3.textContent = JSON.stringify(`Valor Total do Desconto: R$ ${valorTotalDesconto}`);
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
