@@ -1,0 +1,7 @@
+### Teste para Produto Físico (Soma o frete de 20.00)
+GET http://localhost:5266/api/Produto/fisico/Cadeira/200
+
+###
+
+### Teste para Produto Digital (Aplica 10% de desconto)
+GET http://localhost:5266/api/Produto/digital/CursoCSharp/100
