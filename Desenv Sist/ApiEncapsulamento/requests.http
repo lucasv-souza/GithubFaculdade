@@ -1,0 +1,32 @@
+
+@baseUrl = http://localhost:5243
+
+### 1. Consultar Saldo Inicial (Deve retornar 100)
+GET {{baseUrl}}/conta/saldo
+
+###
+
+### 2. Realizar um Depósito (Sucesso)
+# O corpo da requisição é apenas o número, pois a API espera um 'decimal'
+POST {{baseUrl}}/conta/depositar
+Content-Type: application/json
+
+50.00
+
+###
+
+### 3. Realizar um Saque (Sucesso)
+POST {{baseUrl}}/conta/sacar
+Content-Type: application/json
+
+20.00
+
+###
+
+### 4. Tentar sacar mais do que tem (A Prova do Encapsulamento)
+# Isso deve retornar um Erro ("Saldo insuficiente"), provando que 
+# a classe protegeu o dinheiro de ficar negativo!
+POST {{baseUrl}}/conta/sacar
+Content-Type: application/json
+
+9000.00

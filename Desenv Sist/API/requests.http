@@ -1,0 +1,32 @@
+### Variável com a URL base da API
+@baseUrl = http://127.0.0.1:8000
+
+### 1. Criar um Desenvolvedor
+POST {{baseUrl}}/employees/developer
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Ana Silva",
+    "salary": 5000.00,
+    "programming_language": "Python"
+}
+
+###
+
+### 2. Criar um Gerente
+POST {{baseUrl}}/employees/manager
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Carlos Mendes",
+    "salary": 10000.00,
+    "team_size": 5
+}
+
+###
+
+### 3. Listar todos os funcionários (A Mágica do Polimorfismo)
+GET {{baseUrl}}/employees
+Accept: application/json
