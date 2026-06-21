@@ -1,2 +1,0 @@
-Inserting a new record to the database
-The record was inserted

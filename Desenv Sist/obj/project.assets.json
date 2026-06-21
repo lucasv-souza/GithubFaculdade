@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\TwoWords.csproj",
+      "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\TwoWords.csproj",
       "projectName": "TwoWords",
-      "projectPath": "c:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\TwoWords.csproj",
+      "projectPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\TwoWords.csproj",
       "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\obj\\",
+      "outputPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -63,19 +63,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.27, 8.0.27]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.27, 8.0.27]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.27, 8.0.27]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.27, 8.0.27]"
           }
         ],
         "frameworkReferences": {
@@ -83,7 +83,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

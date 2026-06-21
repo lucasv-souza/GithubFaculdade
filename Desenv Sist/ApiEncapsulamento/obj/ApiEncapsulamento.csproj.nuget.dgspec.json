@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas.viniciuss0987\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj": {}
+    "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas.viniciuss0987\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj": {
+    "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas.viniciuss0987\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj",
         "projectName": "ApiEncapsulamento",
-        "projectPath": "C:\\Users\\lucas.viniciuss0987\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj",
-        "packagesPath": "C:\\Users\\lucas.viniciuss0987\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas.viniciuss0987\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\obj\\",
+        "projectPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\ApiEncapsulamento.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucas\\OneDrive\\Documents\\GitHub\\GithubFaculdade\\Desenv Sist\\ApiEncapsulamento\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lucas.viniciuss0987\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -61,6 +54,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -69,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
