@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TwoWords")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+474d5299f97553b1a66922a4a24e2f7d16882ede")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4fcb1526456472f5811a487f2f70bf12e46455e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TwoWords")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TwoWords")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
