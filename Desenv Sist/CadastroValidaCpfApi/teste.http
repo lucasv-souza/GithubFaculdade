@@ -1,0 +1,19 @@
+### Teste 1: CPF Inválido (Deve dar Erro 400)
+POST http://localhost:5234/api/pessoa
+Content-Type: application/json
+
+{
+    "nome": "Lucas Vinicius",
+    "cpf": "111.111.111-11"
+}
+
+###
+
+### Teste 2: CPF Válido (Deve dar Sucesso 200)
+POST http://localhost:5234/api/pessoa
+Content-Type: application/json
+
+{
+    "nome": "Lucas Vinicius",
+    "cpf": "12345678901"
+}
