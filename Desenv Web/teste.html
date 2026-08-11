@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Formulários</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #000000;
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+    h1 { text-align: center; font-size: 22px; margin-bottom: 5px; }
+    h3 { text-align: center; font-size: 16px; margin-top: 0; color: #444; }
+    .titulo-secao {
+        background: #000000;
+        color: #fff;
+        font-weight: bold;
+        padding: 6px 10px;
+        margin-top: 40px;
+        margin-bottom: 15px;
+    }
+    /* ---------- Formulário 1 ---------- */
+    #form1-box {
+        border: 3px solid #000000;
+        padding: 15px;
+    }
+    #form1-titulo {
+        text-align: center;
+        border: 1px solid #999;
+        background: #eee;
+        padding: 5px;
+        width: 250px;
+        margin: 0 auto 15px auto;
+    }
+    .linha { margin-bottom: 8px; }
+    .linha label { display: inline-block; width: 45px; }
+    .linha input[type=text], .linha input[type=email] {
+        width: 200px;
+        margin-right: 25px;
+    }
+    .colunas {
+        display: flex;
+        border: 1px solid #999;
+        margin-top: 10px;
+    }
+    .coluna {
+        flex: 1;
+        padding: 8px;
+        border-right: 1px solid #999;
+    }
+    .coluna:last-child { border-right: none; }
+    .coluna-titulo { font-weight: bold; margin-bottom: 8px; display: block; }
+    .coluna div { margin-bottom: 4px; }
+    .coluna input[type=text] { width: 100px; margin-left: 5px; }
+    #comentarios-linha {
+        margin-top: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    #comentarios-linha textarea { flex: 1; height: 70px; }
+    .botoes { margin-top: 10px; }
+    .botoes button { margin-right: 8px; padding: 4px 12px; }
+
+    /* ---------- Formulário 2 ---------- */
+    fieldset {
+        border: 1px solid #999;
+        margin-bottom: 15px;
+        padding: 12px 15px;
+    }
+    legend { font-weight: bold; padding: 0 5px; }
+    .campo { margin-bottom: 10px; }
+    .campo label { display: block; margin-bottom: 3px; font-weight: bold; }
+    .campo input[type=text],
+    .campo input[type=password],
+    .campo input[type=email],
+    .campo input[type=date],
+    .campo select,
+    .campo textarea {
+        width: 300px;
+        padding: 4px;
+    }
+    .campo textarea { height: 60px; }
+    .sexo label { display: inline; font-weight: normal; margin-right: 15px; }
+    .sexo-titulo { font-weight: bold; margin-bottom: 5px; }
+    #enviar2 { padding: 5px 15px; }
+
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        font-weight: bold;
+        border-top: 2px solid #000000;
+        padding-top: 10px;
+        color: #000000;
+    }
+</style>
+</head>
+<body>
+
+<h1>CIÊNCIAS DA COMPUTAÇÃO</h1>
+<h3>Desenvolvimento Web</h3>
+
+<!-- ===================== FORMULÁRIO 1 ===================== -->
+
+<div id="form1-box">
+    <div id="form1-titulo"><strong>FORMULARIO</strong></div>
+
+    <form id="formulario1">
+        <div class="linha">
+            <label for="f1-nome">Nome:</label>
+            <input type="text" id="f1-nome" name="nome">
+            <label for="f1-email">E-mail:</label>
+            <input type="email" id="f1-email" name="email">
+        </div>
+        <div class="linha">
+            <label for="f1-fone">Fone:</label>
+            <input type="text" id="f1-fone" name="fone" style="width:150px;">
+        </div>
+
+        <div class="colunas">
+            <div class="coluna">
+                <span class="coluna-titulo">O que você está achando do curso até agora?</span>
+                <div><input type="checkbox" name="opiniao" value="muito_bom"> Muito bom, sem comentários</div>
+                <div><input type="checkbox" name="opiniao" value="bom"> Bom, sem comentários</div>
+                <div><input type="checkbox" name="opiniao" value="muito"> Muito</div>
+                <div><input type="checkbox" name="opiniao" value="mais_rapido"> Poderia ir mais rápido</div>
+                <div><input type="checkbox" name="opiniao" value="mais_devagar"> Poderia ir mais devagar</div>
+                <div>
+                    <input type="checkbox" id="f1-outra-opiniao" name="opiniao" value="outra">
+                    <label for="f1-outra-opiniao">Outra opinião. Qual?</label>
+                    <input type="text" name="outra_opiniao_txt">
+                </div>
+            </div>
+            <div class="coluna">
+                <span class="coluna-titulo">Avalie o curso até agora; agora</span>
+                <div><input type="radio" name="avaliacao" value="10++"> 10++</div>
+                <div><input type="radio" name="avaliacao" value="10"> 10</div>
+                <div><input type="radio" name="avaliacao" value="9++"> 9++</div>
+                <div><input type="radio" name="avaliacao" value="8++"> 8++</div>
+                <div><input type="radio" name="avaliacao" value="7++"> 7++</div>
+                <div>
+                    <input type="radio" id="f1-outra-avaliacao" name="avaliacao" value="outra">
+                    <label for="f1-outra-avaliacao">Outra. Qual?</label>
+                    <input type="text" name="outra_avaliacao_txt">
+                </div>
+            </div>
+        </div>
+
+        <div id="comentarios-linha">
+            <label for="f1-comentarios">Deixe aqui seus comentários e críticas construtivas</label>
+            <textarea id="f1-comentarios" name="comentarios"></textarea>
+        </div>
+
+        <div class="botoes">
+            <button type="reset">Limpar Campos</button>
+            <button type="submit">Enviar Dados</button>
+        </div>
+    </form>
+</div>
+
+<!-- ===================== FORMULÁRIO 2 ===================== -->
+<br>
+<br/>
+<form id="formulario2">
+    <fieldset>
+        <legend>Identificação do Usuário</legend>
+
+        <div class="campo">
+            <label for="f2-nome">Nome:</label>
+            <input type="text" id="f2-nome" name="nome" placeholder="Nome completo">
+        </div>
+
+        <div class="campo">
+            <label for="f2-senha">Senha:</label>
+            <input type="password" id="f2-senha" name="senha" placeholder="Digite a senha">
+        </div>
+
+        <div class="campo">
+            <label for="f2-email">E-mail:</label>
+            <input type="email" id="f2-email" name="email" placeholder="Digite seu e-mail">
+        </div>
+
+        <div class="campo sexo">
+            <div class="sexo-titulo">Sexo</div>
+            <input type="radio" id="f2-masc" name="sexo" value="masculino" checked>
+            <label for="f2-masc">Masculino</label>
+            <input type="radio" id="f2-fem" name="sexo" value="feminino">
+            <label for="f2-fem">Feminino</label>
+        </div>
+
+        <div class="campo">
+            <label for="f2-nascimento">Data de Nascimento:</label>
+            <input type="date" id="f2-nascimento" name="nascimento" style="width:180px;">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Endereço</legend>
+
+        <div class="campo">
+            <label for="f2-logradouro">Logradouro:</label>
+            <input type="text" id="f2-logradouro" name="logradouro" placeholder="Rua, Av, Bairro">
+        </div>
+
+        <div class="campo">
+            <label for="f2-numero">Número:</label>
+            <input type="text" id="f2-numero" name="numero" style="width:100px;">
+        </div>
+
+        <div class="campo">
+            <label for="f2-estado">Estado:</label>
+            <select id="f2-estado" name="estado" style="width:180px;">
+                <option>Rio de Janeiro</option>
+                <option>São Paulo</option>
+                <option>Minas Gerais</option>
+                <option>Distrito Federal</option>
+                <option>Bahia</option>
+                <option>Paraná</option>
+                <option>Rio Grande do Sul</option>
+                <option>Outro</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="f2-cidade">Cidade:</label>
+            <input type="text" id="f2-cidade" name="cidade" placeholder="Sua cidade">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Mensagem do Usuário</legend>
+
+        <div class="campo">
+            <label for="f2-urgencia">Grau de urgência: Min ————— Max</label>
+            <input type="range" id="f2-urgencia" name="urgencia" min="0" max="10" style="width:300px;">
+        </div>
+
+        <div class="campo">
+            <label for="f2-mensagem">Mensagem:</label>
+            <textarea id="f2-mensagem" name="mensagem"></textarea>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Quero um produto:</legend>
+
+        <div class="campo">
+            <input type="checkbox" id="f2-quero-produto" name="quero_produto">
+            <label for="f2-quero-produto" style="display:inline; font-weight:normal;">
+                Gostaria de adquirir um produto quando disponível.
+            </label>
+        </div>
+
+        <div class="campo">
+            <label for="f2-cor">Cor:</label>
+            <input type="color" id="f2-cor" name="cor" value="#0000ff" style="width:60px; padding:0;">
+        </div>
+
+        <div class="campo">
+            <label for="f2-quantidade">Quantidade:</label>
+            <input type="number" id="f2-quantidade" name="quantidade" min="0" style="width:100px;">
+        </div>
+
+        <div class="campo">
+            <label for="f2-preco">Preço Total R$:</label>
+            <input type="text" id="f2-preco" name="preco" style="width:150px;">
+        </div>
+    </fieldset>
+
+    <button type="submit" id="enviar2">Enviar</button>
+</form>
+
+<footer>
+    Lucas Vinicius de Souza
+</footer>
+
+<script>
+    // Torna os botões "Enviar" funcionais: impedem o recarregamento da página
+    // e mostram uma confirmação com um resumo dos dados preenchidos.
+    document.getElementById('formulario1').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const dados = new FormData(this);
+        let resumo = 'Dados do Formulário 1 enviados:\n\n';
+        for (const [chave, valor] of dados.entries()) {
+            if (valor) resumo += chave + ': ' + valor + '\n';
+        }
+        alert(resumo);
+    });
+
+    document.getElementById('formulario2').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const dados = new FormData(this);
+        let resumo = 'Dados do Formulário 2 enviados:\n\n';
+        for (const [chave, valor] of dados.entries()) {
+            if (valor) resumo += chave + ': ' + valor + '\n';
+        }
+        alert(resumo);
+    });
+</script>
+
+</body>
+</html>
