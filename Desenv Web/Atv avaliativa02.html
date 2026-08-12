@@ -279,8 +279,6 @@
 </footer>
 
 <script>
-    // Torna os botões "Enviar" funcionais: impedem o recarregamento da página
-    // e mostram uma confirmação com um resumo dos dados preenchidos.
     document.getElementById('formulario1').addEventListener('submit', function(e) {
         e.preventDefault();
         const dados = new FormData(this);
