@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CadastroValidaCpfApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b57a6ec4b7adfb0a558ee594ed9ce2c343c545d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f4407fa553b6eefc3746f63b4348b3a9947be98")]
 [assembly: System.Reflection.AssemblyProductAttribute("CadastroValidaCpfApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CadastroValidaCpfApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
