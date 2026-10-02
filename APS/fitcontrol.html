@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitControl</title>
+<style>
+:root{--bg:#F3F1EC;--ink:#16181D;--acc:#C2410C;--mut:#5C584F;--line:#D9D5CC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3{margin:0 0 6px;text-transform:uppercase;letter-spacing:.03em;font-family:"Arial Narrow","Segoe UI",sans-serif}
+h1{font-size:34px}h3{font-size:19px}
+.m{color:var(--mut);font-size:14px}
+.shell{display:flex;min-height:100vh}
+.side{width:210px;background:var(--ink);color:var(--bg);padding:22px 14px;display:flex;flex-direction:column;gap:6px}
+.side button{min-height:44px;text-align:left;border:0;border-radius:8px;background:transparent;color:inherit;font:600 15px inherit;padding:0 12px;cursor:pointer}
+.side button.on{background:var(--acc)}
+.side .who{margin:auto 0 4px;font-size:13px;opacity:.8;padding:0 12px}
+main{flex:1;padding:28px;max-width:980px;display:flex;flex-direction:column;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:5px}
+input,select{width:100%;min-height:46px;border:1px solid #8A857A;border-radius:8px;padding:0 10px;font:16px inherit;background:#fff}
+.btn{min-height:46px;border:0;border-radius:8px;background:var(--acc);color:#fff;font:600 16px inherit;padding:0 20px;cursor:pointer}
+.btn2{min-height:44px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:600 14px inherit;padding:0 14px;cursor:pointer}
+.big{min-height:58px;font-size:19px;width:100%}
+.lnk{border:0;background:none;color:var(--acc);font:600 14px inherit;text-decoration:underline;cursor:pointer;min-height:44px}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:13px;color:var(--mut);padding:8px 10px;border-bottom:2px solid var(--ink)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);font-size:15px}
+.tbl{overflow-x:auto}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:600}
+.ok{background:#DCEFD9;color:#1B5E20}.err{background:#FBE3CF;color:#8A3200}.off{background:#E5E2DA;color:#4A463E}
+.msg{padding:12px 14px;border-radius:8px;font-weight:600}
+.row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;align-items:end;margin-bottom:10px}
+.bars{display:flex;gap:10px;align-items:flex-end;height:140px;padding-top:8px}
+.bars div{flex:1;text-align:center;font-size:12px}
+.bars i{display:block;background:var(--acc);border-radius:4px 4px 0 0;min-height:2px;margin-bottom:4px}
+.login{max-width:380px;margin:8vh auto;padding:0 20px;display:flex;flex-direction:column;gap:14px}
+@media(max-width:720px){.shell{flex-direction:column}.side{width:auto;flex-direction:row;flex-wrap:wrap;padding:10px}.side .who{display:none}main{padding:18px}.row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ===== Dados (localStorage) ===== */
+const KEY='fitcontrol_v1';
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const iso=n=>{const d=new Date();d.setDate(d.getDate()+n);return ymd(d)};
+function seed(){
+  const ck=[];
+  [[3,1],[3,2],[3,3],[3,5],[3,6],[4,2],[4,6]].forEach(([s,n])=>{const d=new Date();d.setDate(d.getDate()-n);d.setHours(18,0);ck.push({studentId:s,at:d.getTime()})});
+  return{seq:100,session:null,
+  users:[
+    {id:1,name:'Carla (Recepção)',email:'admin@fit.com',pass:'123',role:'admin'},
+    {id:2,name:'Marcos (Instrutor)',email:'instrutor@fit.com',pass:'123',role:'instrutor'},
+    {id:3,name:'Ana Souza',email:'ana@fit.com',pass:'123',role:'aluno'},
+    {id:4,name:'Bruno Lima',email:'bruno@fit.com',pass:'123',role:'aluno'}],
+  plans:[{id:1,name:'Mensal',months:1,value:99.9,active:true},{id:2,name:'Trimestral',months:3,value:269.9,active:true},{id:3,name:'Anual',months:12,value:949.9,active:true}],
+  enrollments:[{id:1,studentId:3,planId:1,start:iso(-20),active:true},{id:2,studentId:4,planId:1,start:iso(-40),active:true}],
+  fees:[
+    {id:1,studentId:3,planId:1,value:99.9,due:iso(-20),status:'paga',paidAt:iso(-20)},
+    {id:2,studentId:3,planId:1,value:99.9,due:iso(5),status:'pendente'},
+    {id:3,studentId:4,planId:1,value:99.9,due:iso(-15),status:'pendente'}],
+  workouts:[{id:1,studentId:3,instructorId:2,goal:'Hipertrofia',valid:iso(60),items:[
+    {ex:'Supino reto',sets:4,reps:10,load:30},{ex:'Crucifixo',sets:3,reps:12,load:14},{ex:'Tríceps corda',sets:3,reps:15,load:20}]}],
+  checkins:ck};
+}
+let DB=JSON.parse(localStorage.getItem(KEY)||'null')||seed();
+const save=()=>localStorage.setItem(KEY,JSON.stringify(DB));
+let S={view:'login',msg:null,ok:true,link:null,draft:null,editPlan:null,receipt:null};
+
+/* ===== Utilidades ===== */
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const brl=n=>Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const fd=s=>s?s.split('-').reverse().join('/'):'';
+const me=()=>DB.users.find(u=>u.id===DB.session);
+const user=id=>DB.users.find(u=>u.id===id);
+const plan=id=>DB.plans.find(p=>p.id===id);
+const activeEn=id=>DB.enrollments.find(e=>e.studentId===id&&e.active);
+const daysLate=f=>Math.floor((new Date(ymd(new Date()))-new Date(f.due))/864e5);
+const myFees=id=>DB.fees.filter(f=>f.studentId===id);
+const myWorkout=id=>[...DB.workouts].reverse().find(w=>w.studentId===id);
+const hhmm=t=>new Date(t).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+const sameDay=(t,d)=>ymd(new Date(t))===ymd(d);
+function flash(msg,ok=true,link=null){S.msg=msg;S.ok=ok;S.link=link;render()}
+function go(v){S.view=v;S.msg=null;S.link=null;S.receipt=null;if(v!=='fichas')S.draft=null;if(v!=='planos')S.editPlan=null;render()}
+const NAV={aluno:[['home','Início'],['treino','Meu treino'],['pag','Pagamentos']],
+  instrutor:[['fichas','Fichas de treino']],
+  admin:[['alunos','Alunos'],['planos','Planos'],['fichas','Fichas de treino'],['rel','Relatórios']]};
+const HOME={aluno:'home',instrutor:'fichas',admin:'alunos'};
+
+/* ===== Telas ===== */
+const banner=()=>S.msg?`<div class="msg ${S.ok?'ok':'err'}" role="status">${esc(S.msg)} ${S.link?`<button class="lnk" data-act="nav" data-v="${S.link.v}">${esc(S.link.l)}</button>`:''}</div>`:'';
+const V={};
+
+/* Tela 1 – Login (UC01) */
+V.login=()=>`<div class="login"><h1>FitControl</h1><p class="m">Gestão e acompanhamento para academias.</p>${banner()}
+<form data-form="login" class="card" style="display:flex;flex-direction:column;gap:12px">
+<div><label for="em">E-mail</label><input id="em" name="email" type="email" required></div>
+<div><label for="pw">Senha</label><input id="pw" name="pass" type="password" required></div>
+<button class="btn">Entrar</button></form>
+<div class="card m"><b>Contas de teste</b> (senha 123):<br>admin@fit.com (recepção/admin)<br>instrutor@fit.com<br>ana@fit.com (aluna em dia)<br>bruno@fit.com (aluno em atraso)<br><button class="lnk" data-act="reset">Restaurar dados de exemplo</button></div></div>`;
+
+/* Tela 2 – Home do aluno + check-in (UC05/UC06) */
+V.home=()=>{const u=me(),en=activeEn(u.id),w=myWorkout(u.id),pend=myFees(u.id).filter(f=>f.status==='pendente').sort((a,b)=>a.due>b.due?1:-1)[0];
+  const month=DB.checkins.filter(c=>c.studentId===u.id&&new Date(c.at).getMonth()===new Date().getMonth()).length;
+  return`<div><h1>Olá, ${esc(u.name.split(' ')[0])}</h1><p class="m">${en?'Plano '+esc(plan(en.planId).name):'Sem matrícula ativa'} · ${month} treino(s) neste mês</p></div>
+<div class="grid"><div class="card"><h3>Treino de hoje</h3>${w?w.items.slice(0,3).map(i=>`<div style="display:flex;justify-content:space-between"><span>${esc(i.ex)}</span><span class="m">${i.sets} × ${i.reps}</span></div>`).join(''):'<p class="m">Nenhuma ficha cadastrada ainda.</p>'}</div>
+<div class="card"><h3>Mensalidade</h3>${pend?`<p style="margin:4px 0">${brl(pend.value)} · vence em ${fd(pend.due)}</p><span class="tag ${daysLate(pend)>0?'err':'ok'}">${daysLate(pend)>0?'Em atraso':'Em dia'}</span>`:'<span class="tag ok">Tudo pago</span>'}</div></div>
+${banner()}<button class="btn big" data-act="checkin">Fazer check-in</button>`};
+
+/* Tela 3 – Cadastro de aluno e matrícula (UC02) */
+V.alunos=()=>{const al=DB.users.filter(u=>u.role==='aluno');
+  return`<div><h1>Alunos e matrícula</h1><p class="m">Cadastre o aluno e vincule um plano. Senha inicial: 123.</p></div>${banner()}
+<form data-form="enroll" class="card"><div class="grid">
+<div><label for="n">Nome completo</label><input id="n" name="name" required></div>
+<div><label for="c">CPF</label><input id="c" name="cpf" placeholder="000.000.000-00"></div>
+<div><label for="e">E-mail</label><input id="e" name="email" type="email" required></div>
+<div><label for="t">Telefone</label><input id="t" name="tel" type="tel"></div>
+<div><label for="p">Plano</label><select id="p" name="plan">${DB.plans.filter(p=>p.active).map(p=>`<option value="${p.id}">${esc(p.name)} – ${brl(p.value)}</option>`).join('')}</select></div>
+<div><label for="d">Início</label><input id="d" name="start" type="date" value="${iso(0)}" required></div></div>
+<p class="m">Regra: o aluno só pode ter uma matrícula ativa por vez.</p><button class="btn">Matricular aluno</button></form>
+<div class="card tbl"><h3>Alunos cadastrados</h3><table><thead><tr><th>Nome</th><th>E-mail</th><th>Plano</th><th>Início</th><th>Situação</th></tr></thead><tbody>${al.map(u=>{const en=activeEn(u.id),late=myFees(u.id).some(f=>f.status==='pendente'&&daysLate(f)>0);
+  return`<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${en?esc(plan(en.planId).name):'—'}</td><td>${en?fd(en.start):'—'}</td><td><span class="tag ${!en?'off':late?'err':'ok'}">${!en?'Inativa':late?'Em atraso':'Em dia'}</span></td></tr>`}).join('')}</tbody></table></div>`};
+
+/* Tela 4 – Gerenciamento de planos (UC03) */
+V.planos=()=>{const p=S.editPlan?plan(S.editPlan):null;
+  return`<div><h1>Planos</h1><p class="m">Crie, edite e inative os planos.</p></div>${banner()}
+<form data-form="plan" class="card"><h3>${p?'Editar plano':'Novo plano'}</h3><div class="grid">
+<div><label for="pn">Nome</label><input id="pn" name="name" value="${esc(p?.name)}" required></div>
+<div><label for="pm">Duração (meses)</label><input id="pm" name="months" type="number" min="1" value="${p?p.months:1}" required></div>
+<div><label for="pv">Valor (R$)</label><input id="pv" name="value" type="number" min="0" step="0.01" value="${p?p.value:''}" required></div></div>
+<div style="display:flex;gap:10px;margin-top:12px"><button class="btn">Salvar plano</button>${p?'<button type="button" class="btn2" data-act="cancelPlan">Cancelar</button>':''}</div></form>
+<div class="card tbl"><table><thead><tr><th>Plano</th><th>Duração</th><th>Valor</th><th>Status</th><th>Ações</th></tr></thead><tbody>${DB.plans.map(x=>`<tr><td>${esc(x.name)}</td><td>${x.months} mês(es)</td><td>${brl(x.value)}</td><td><span class="tag ${x.active?'ok':'off'}">${x.active?'Ativo':'Inativo'}</span></td><td><button class="btn2" data-act="editPlan" data-id="${x.id}">Editar</button> <button class="btn2" data-act="togglePlan" data-id="${x.id}">${x.active?'Inativar':'Ativar'}</button></td></tr>`).join('')}</tbody></table></div>`};
+
+/* Tela 5 – Montagem da ficha de treino (UC04) */
+const EXS=['Supino reto','Crucifixo','Agachamento','Leg press','Remada curvada','Puxada frontal','Desenvolvimento','Rosca direta','Tríceps corda','Prancha'];
+V.fichas=()=>{const d=S.draft||{id:null,studentId:'',goal:'Hipertrofia',valid:iso(60),items:[{ex:'',sets:3,reps:12,load:0}]};
+  const alunos=DB.users.filter(u=>u.role==='aluno'&&activeEn(u.id));
+  return`<div><h1>Fichas de treino</h1><p class="m">Monte a ficha com exercícios, séries e cargas.</p></div>${banner()}
+<form data-form="ficha" class="card"><h3>${d.id?'Editar ficha':'Nova ficha'}</h3><div class="grid">
+<div><label for="f-st">Aluno</label><select id="f-st">${alunos.map(a=>`<option value="${a.id}" ${a.id==d.studentId?'selected':''}>${esc(a.name)}</option>`).join('')}</select></div>
+<div><label for="f-go">Objetivo</label><select id="f-go">${['Hipertrofia','Emagrecimento','Condicionamento'].map(o=>`<option ${o===d.goal?'selected':''}>${o}</option>`).join('')}</select></div>
+<div><label for="f-va">Validade</label><input id="f-va" type="date" value="${d.valid}" required></div></div>
+<h3 style="margin-top:14px">Exercícios</h3><datalist id="exs">${EXS.map(x=>`<option value="${x}">`).join('')}</datalist>
+${d.items.map((i,k)=>`<div class="row it"><div><label>Exercício</label><input data-k="ex" list="exs" value="${esc(i.ex)}"></div><div><label>Séries</label><input data-k="sets" type="number" min="1" value="${i.sets}"></div><div><label>Reps</label><input data-k="reps" type="number" min="1" value="${i.reps}"></div><div><label>Carga (kg)</label><input data-k="load" type="number" min="0" value="${i.load}"></div><button type="button" class="btn2" data-act="delItem" data-i="${k}" aria-label="Remover exercício">✕</button></div>`).join('')}
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn2" data-act="addItem">+ Adicionar exercício</button><button class="btn">Salvar ficha</button>${d.id?'<button type="button" class="btn2" data-act="cancelFicha">Cancelar edição</button>':''}</div></form>
+<div class="card tbl"><h3>Fichas cadastradas</h3><table><thead><tr><th>Aluno</th><th>Objetivo</th><th>Exercícios</th><th>Instrutor</th><th>Validade</th><th></th></tr></thead><tbody>${DB.workouts.map(w=>`<tr><td>${esc(user(w.studentId)?.name)}</td><td>${esc(w.goal)}</td><td>${w.items.length}</td><td>${esc(user(w.instructorId)?.name)}</td><td>${fd(w.valid)}</td><td><button class="btn2" data-act="editFicha" data-id="${w.id}">Editar</button></td></tr>`).join('')||'<tr><td colspan="6" class="m">Nenhuma ficha.</td></tr>'}</tbody></table></div>`};
+
+/* Tela 6 – Meu treino (UC05) */
+V.treino=()=>{const w=myWorkout(me().id);
+  return`<div><h1>Meu treino</h1><p class="m">${w?esc(w.goal)+' · válida até '+fd(w.valid)+' · por '+esc(user(w.instructorId)?.name):'Peça ao instrutor para montar sua ficha.'}</p></div>
+${w?`<div class="card tbl"><table><thead><tr><th>Exercício</th><th>Séries</th><th>Repetições</th><th>Carga</th></tr></thead><tbody>${w.items.map(i=>`<tr><td>${esc(i.ex)}</td><td>${i.sets}</td><td>${i.reps}</td><td>${i.load} kg</td></tr>`).join('')}</tbody></table></div>`:''}`};
+
+/* Tela 7 – Mensalidades e pagamento (UC07) */
+V.pag=()=>{const fs=myFees(me().id).sort((a,b)=>a.due<b.due?1:-1),r=S.receipt?DB.fees.find(f=>f.id===S.receipt):null;
+  return`<div><h1>Mensalidades</h1><p class="m">Pague online e emita o comprovante.</p></div>${banner()}
+${r?`<div class="card" style="border:2px solid var(--acc)"><h3>Comprovante</h3><p>Pagamento de ${brl(r.value)} (vencimento ${fd(r.due)}) confirmado em ${fd(r.paidAt)}.<br>Nº do comprovante: FC-${String(r.id).padStart(6,'0')}</p><button class="btn2" data-act="print">Imprimir</button> <button class="btn2" data-act="closeReceipt">Fechar</button></div>`:''}
+<div class="card tbl"><table><thead><tr><th>Vencimento</th><th>Valor</th><th>Situação</th><th></th></tr></thead><tbody>${fs.map(f=>{const late=f.status==='pendente'&&daysLate(f)>0;
+  return`<tr><td>${fd(f.due)}</td><td>${brl(f.value)}</td><td><span class="tag ${f.status==='paga'?'ok':late?'err':'off'}">${f.status==='paga'?'Paga':late?'Atrasada ('+daysLate(f)+' d)':'Pendente'}</span></td><td>${f.status==='pendente'?`<button class="btn" data-act="pay" data-id="${f.id}">Pagar</button>`:`<button class="lnk" data-act="receipt" data-id="${f.id}">Ver comprovante</button>`}</td></tr>`}).join('')}</tbody></table></div>`};
+
+/* Tela 8 – Relatórios (UC08) */
+V.rel=()=>{const days=[...Array(7)].map((_,k)=>{const d=new Date();d.setDate(d.getDate()-6+k);return{d,n:DB.checkins.filter(c=>sameDay(c.at,d)).length}});
+  const max=Math.max(1,...days.map(x=>x.n)),paid=DB.fees.filter(f=>f.status==='paga').reduce((s,f)=>s+f.value,0),open=DB.fees.filter(f=>f.status==='pendente').reduce((s,f)=>s+f.value,0);
+  const late=DB.fees.filter(f=>f.status==='pendente'&&daysLate(f)>0);
+  return`<div><h1>Relatórios</h1><p class="m">Frequência, inadimplência e receita.</p></div>
+<div class="grid"><div class="card"><h3>Receita recebida</h3><b style="font-size:26px">${brl(paid)}</b></div><div class="card"><h3>A receber</h3><b style="font-size:26px">${brl(open)}</b></div><div class="card"><h3>Alunos ativos</h3><b style="font-size:26px">${DB.enrollments.filter(e=>e.active).length}</b></div></div>
+<div class="card"><h3>Check-ins nos últimos 7 dias</h3><div class="bars">${days.map(x=>`<div><i style="height:${Math.round(x.n/max*100)}px"></i>${x.n}<br><span class="m">${String(x.d.getDate()).padStart(2,'0')}/${String(x.d.getMonth()+1).padStart(2,'0')}</span></div>`).join('')}</div></div>
+<div class="card tbl"><h3>Inadimplência</h3><table><thead><tr><th>Aluno</th><th>Vencimento</th><th>Dias de atraso</th><th>Valor</th></tr></thead><tbody>${late.map(f=>`<tr><td>${esc(user(f.studentId)?.name)}</td><td>${fd(f.due)}</td><td>${daysLate(f)}</td><td>${brl(f.value)}</td></tr>`).join('')||'<tr><td colspan="4" class="m">Nenhum aluno em atraso.</td></tr>'}</tbody></table></div>`};
+
+/* ===== Render ===== */
+function render(){
+  const u=me(),a=document.getElementById('app');
+  if(!u){a.innerHTML=V.login();return}
+  a.innerHTML=`<div class="shell"><nav class="side"><h2>FitControl</h2>${NAV[u.role].map(([v,l])=>`<button data-act="nav" data-v="${v}" class="${S.view===v?'on':''}">${l}</button>`).join('')}<div class="who">${esc(u.name)}</div><button data-act="logout">Sair</button></nav><main>${V[S.view]()}</main></div>`;
+}
+
+/* ===== Ações ===== */
+function readDraft(){
+  const d=S.draft||{id:null};
+  d.studentId=document.getElementById('f-st')?.value||'';d.goal=document.getElementById('f-go').value;d.valid=document.getElementById('f-va').value;
+  d.items=[...document.querySelectorAll('.it')].map(r=>{const g=k=>r.querySelector(`[data-k="${k}"]`).value;return{ex:g('ex'),sets:+g('sets'),reps:+g('reps'),load:+g('load')}});
+  S.draft=d;return d;
+}
+const A={
+  nav:d=>go(d.v),
+  logout(){DB.session=null;save();S.view='login';S.msg=null;render()},
+  reset(){DB=seed();save();flash('Dados de exemplo restaurados.')},
+  print(){window.print()},
+  checkin(){
+    const u=me(),en=activeEn(u.id);
+    if(!en)return flash('Matrícula inativa. Procure a recepção.',false);
+    if(myFees(u.id).some(f=>f.status==='pendente'&&daysLate(f)>10))return flash('Mensalidade em atraso há mais de 10 dias. Regularize para fazer check-in.',false,{v:'pag',l:'Pagar agora'});
+    const t=DB.checkins.find(c=>c.studentId===u.id&&sameDay(c.at,new Date()));
+    if(t)return flash('Você já fez check-in hoje às '+hhmm(t.at)+'.',false);
+    DB.checkins.push({studentId:u.id,at:Date.now()});save();flash('Check-in registrado! Bom treino.');
+  },
+  pay(d){const f=DB.fees.find(x=>x.id==d.id);f.status='paga';f.paidAt=ymd(new Date());save();S.receipt=f.id;flash('Pagamento confirmado.')},
+  receipt(d){S.receipt=+d.id;render()},
+  closeReceipt(){S.receipt=null;render()},
+  editPlan(d){S.editPlan=+d.id;render()},
+  cancelPlan(){S.editPlan=null;render()},
+  togglePlan(d){const p=plan(+d.id);p.active=!p.active;save();render()},
+  addItem(){const d=readDraft();d.items.push({ex:'',sets:3,reps:12,load:0});render()},
+  delItem(d){const x=readDraft();x.items.splice(+d.i,1);if(!x.items.length)x.items.push({ex:'',sets:3,reps:12,load:0});render()},
+  cancelFicha(){S.draft=null;render()},
+  editFicha(d){
+    const w=DB.workouts.find(x=>x.id==d.id),u=me();
+    if(u.role!=='admin'&&w.instructorId!==u.id)return flash('Só o instrutor que criou a ficha ou o administrador pode editá-la.',false);
+    S.draft={id:w.id,studentId:w.studentId,goal:w.goal,valid:w.valid,items:w.items.map(i=>({...i}))};S.msg=null;render();
+  }
+};
+const F={
+  login(f){
+    const u=DB.users.find(x=>x.email===f.email.trim().toLowerCase()&&x.pass===f.pass);
+    if(!u)return flash('E-mail ou senha incorretos.',false);
+    DB.session=u.id;save();S.view=HOME[u.role];S.msg=null;render();
+  },
+  enroll(f){
+    const email=f.email.trim().toLowerCase();let u=DB.users.find(x=>x.email===email);
+    if(u&&u.role!=='aluno')return flash('Este e-mail pertence a um membro da equipe.',false);
+    if(u&&activeEn(u.id))return flash('Este aluno já possui matrícula ativa (RN04).',false);
+    const p=plan(+f.plan);
+    if(!u){u={id:++DB.seq,name:f.name.trim(),email,pass:'123',role:'aluno',cpf:f.cpf,tel:f.tel};DB.users.push(u)}
+    DB.enrollments.push({id:++DB.seq,studentId:u.id,planId:p.id,start:f.start,active:true});
+    DB.fees.push({id:++DB.seq,studentId:u.id,planId:p.id,value:p.value,due:f.start,status:'pendente'});
+    save();flash('Aluno matriculado no plano '+p.name+'. Senha inicial: 123.');
+  },
+  plan(f){
+    const v={name:f.name.trim(),months:+f.months,value:+f.value};
+    if(S.editPlan)Object.assign(plan(S.editPlan),v);else DB.plans.push({id:++DB.seq,...v,active:true});
+    S.editPlan=null;save();flash('Plano salvo.');
+  },
+  ficha(){
+    const d=readDraft(),u=me();
+    if(!d.studentId)return flash('Escolha um aluno.',false);
+    const items=d.items.filter(i=>i.ex.trim());
+    if(!items.length)return flash('Adicione ao menos um exercício.',false);
+    if(d.id){
+      const w=DB.workouts.find(x=>x.id===d.id);
+      if(u.role!=='admin'&&w.instructorId!==u.id)return flash('Sem permissão para editar esta ficha (RN03).',false);
+      Object.assign(w,{studentId:+d.studentId,goal:d.goal,valid:d.valid,items});
+    }else DB.workouts.push({id:++DB.seq,studentId:+d.studentId,instructorId:u.id,goal:d.goal,valid:d.valid,items});
+    S.draft=null;save();flash('Ficha salva.');
+  }
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b)A[b.dataset.act](b.dataset)});
+document.addEventListener('submit',e=>{e.preventDefault();F[e.target.dataset.form](Object.fromEntries(new FormData(e.target)))});
+if(me())S.view=HOME[me().role];
+render();
+</script>
+</body>
+</html>
