@@ -17,12 +17,12 @@ Os códigos incluem, mas não se limitam a:
 
 1. Clone este repositório:
    ```cmd
-   git clone https://github.com/lucasvini-souza/Faculdade.git
+   git clone https://github.com/lucasvini-souza/GithubFaculdade.git
 Acesse o diretório:
 
    ```cmd
 
-   cd Faculdade
+   cd GithubFaculdade
 ```
    Compile o código desejado:
 
